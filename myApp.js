@@ -7,6 +7,13 @@ let app = express();
  */
 app.use("/public", express.static(__dirname + '/public'));
 /**
+ * 7. Implement a Root-Level Request Logger Middleware
+ */
+app.use(function (req, res, next) {
+    console.log(req.method, req.path, "-", req.ip);
+    next();
+});
+/**
  * 1. Meet the Node console
  */
 console.log("Hello World");
@@ -27,9 +34,9 @@ app.get("/", function (req, res) {
  */
 app.get("/json", function (req, res) {
     let msg = { message: "Hello json" }
-/**
- * 6. Use the .env File
- */
+    /**
+     * 6. Use the .env File
+     */
     if (process.env.MESSAGE_STYLE == "uppercase") {
         msg = { message: "Hello json".toUpperCase() }
     }
