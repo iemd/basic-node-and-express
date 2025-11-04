@@ -1,6 +1,9 @@
 let express = require('express');
 require('dotenv').config();
+const bodyParser = require('body-parser');
 let app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 /**
  * 4. Serve Static Assets
@@ -62,6 +65,12 @@ app.get("/:word/echo", function (req, res) {
  */
 app.route("/name").get(function (req, res) {
     let fullname = req.query.first + " " + req.query.last;
+    res.json({ name: fullname });
+    /**
+     * 11. Use body-parser to Parse POST Requests
+     */
+}).post(function (req, res) {
+    let fullname = req.body.first + " " + req.body.last;
     res.json({ name: fullname });
 });
 
