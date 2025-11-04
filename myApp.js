@@ -21,5 +21,15 @@ console.log("Hello World");
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/views/index.html");
 });
+/**
+ * 5. Serve JSON on a Specific Route
+ */
+app.get("/json", function (req, res) {
+    let msg = { message: "Hello json" }
+    if (process.env.MESSAGE_STYLE == "uppercase") {
+        msg = { message: "Hello json".toUpperCase() }
+    }
+    res.json(msg);
+});
 
 module.exports = app;
