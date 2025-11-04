@@ -2,6 +2,10 @@ let express = require('express');
 let app = express();
 
 /**
+ * 4. Serve Static Assets
+ */
+app.use("/public", express.static(__dirname + '/public'));
+/**
  * 1. Meet the Node console
  */
 console.log("Hello World");
