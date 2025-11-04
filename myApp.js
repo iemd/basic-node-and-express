@@ -42,5 +42,14 @@ app.get("/json", function (req, res) {
     }
     res.json(msg);
 });
+/**
+ * 8. Chain Middleware to Create a Time Server
+ */
+app.get("/now", function (req, res, next) {
+    req.time = new Date().toString();
+    next();
+}, function (req, res) {
+    res.send({ time: req.time, name: req.name });
+});
 
 module.exports = app;
